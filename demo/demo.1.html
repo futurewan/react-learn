@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsx语法</title>
+    <script src="./build/react.js"></script>
+    <script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        var names = ['Alice','Emily','Kate'];
+        var namesDOM = names.map((name,index)=>
+            <p key={name}>hello,{name}!</p>
+            );
+        var arrayDOM = [
+            <span key="1">Hello world!</span>,
+            <span key="2">React is awesome</span>
+        ]
+        var stringDOM ={
+            name:<span>i am string</span>
+        };
+        ReactDOM.render(
+            <div>
+                <h1>map</h1>
+                <div>{namesDOM}</div>
+                <h1>array</h1>
+                <div>{arrayDOM}</div>
+                <h1>string</h1>
+                <div>{stringDOM.name}</div>
+            </div>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
