@@ -5,8 +5,8 @@ import Counter from "./Counter";
 import counter from "./reducer";
 
 const store = createStore(counter);
-const rootEl = document.getElementById("example");
-
+const rootEl = document.getElementById("root");
+console.log(store)
 const render = () =>
     ReactDOM.render(
         <Counter

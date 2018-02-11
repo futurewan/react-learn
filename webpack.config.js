@@ -5,12 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry:{
-        // app:'./flux/index.jsx'
-        app:'./redux/counter/index.js'
+        // app:'./react/index.js'
+        app:'./flux/index.jsx'
+        // app:'./redux/counter/index.js'
     },
     output:{
         filename:'[name].[hash:8].js',
         path:path.join(__dirname,'dist')
+    },
+    resolve:{
+       extensions:['.js','.jsx','.less','.json']
     },
     module:{
         rules:[
