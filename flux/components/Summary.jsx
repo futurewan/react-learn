@@ -5,16 +5,26 @@ import SummaryStore from '../stores/SummaryStore'
 export default class Summary extends Component{
     constructor(props){
         super(props);
+        console.log(111,this)
+        this.updateSummary = this.updateSummary.bind(this);
+        this.state = {
+           sum:SummaryStore.getSummary()
+        }
 
-    //    this.state = {
-    //        sum:SummaryStore.getSummary()
-    //    }
     }
 
-
+    componentDidMount(){
+        SummaryStore.addChangeListener(this.updateSummary);
+    }
+    componentWillUnmount() {
+        SummaryStore.removeChangeListener(this.onUpdate);
+      }
+    updateSummary(){
+        this.setState({sum:SummaryStore.getSummary()})
+    }
     render(){
         return(
-            <div>Total Count:</div>
+            <div>Total Count:{this.state.sum}</div>
         )
     }
 }

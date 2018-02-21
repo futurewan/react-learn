@@ -29,13 +29,12 @@ CounterStore.dispatchToken = AppDispatcher.register((action)=>{
     switch (action.type){
         case ActionTypes.INCREMENT:
             counterValues[action.counterCaption]++;
-            CounterStore.emitChange();
             break;
         case ActionTypes.DECREMENT:
             counterValues[action.counterCaption]--;
-            CounterStore.emitChange();
             break;
     }
+    CounterStore.emitChange();
 })
 
 export default CounterStore;

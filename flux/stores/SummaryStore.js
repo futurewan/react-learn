@@ -6,13 +6,13 @@ import CounterStore from "./CounterStore";
 const CHANGE_EVENT = "changed";
 
 function computeSummary(counterValues) {
-    let cummary = 0;
-    for (const key in counterValue) {
-        if (counterValue.hasOwnPropery(key)) {
-            summary += key;
+    let summary = 0;
+    for (const key in counterValues) {
+        if (counterValues.hasOwnProperty(key)) {
+            summary += counterValues[key];
         }
     }
-    return commary;
+    return summary;
 }
 
 const SummaryStore = Object.assign({}, EventEmitter.prototype, {

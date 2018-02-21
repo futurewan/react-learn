@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry:{
         // app:'./react/index.js'
-        app:'./flux/index.jsx'
-        // app:'./redux/counter/index.js'
+        // app:'./flux/index.jsx'
+        app:'./redux/index.jsx'
     },
     output:{
         filename:'[name].[hash:8].js',
