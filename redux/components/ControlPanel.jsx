@@ -27,7 +27,7 @@ class ControlPanel extends Component {
                 <Counter caption="Third" />
                 <Summary />
                 <button onClick={this.changeRender}>
-                    Click me to double!
+                    Click me to d ouble value!
                 </button>
             </div>
         );
