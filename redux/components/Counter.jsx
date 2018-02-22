@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as Actions from "../Actions";
+import {connect} from 'react-redux';
 
 const counterStyle = {
     margin: "16px"
 };
-class Counter extends Component {
-    render() {
-        const { caption, onIncrement, onDecrement, value } = this.props;
-        return (
-            <div style={counterStyle}>
-                <button onClick={onIncrement}>+</button>
-                <button onClick={onDecrement}>-</button>
-                <span>
-                    {caption} count: {value}
-                </span>
-            </div>
-        );
-    }
+function Counter({caption, onIncrement, onDecrement, value}){
+    return (
+        <div style={counterStyle}>
+            <button onClick={onIncrement}>+</button>
+            <button onClick={onDecrement}>-</button>
+            <span>
+                {caption} count: {value}
+            </span>
+        </div>
+    );
 }
 
 Counter.propTypes = {
@@ -27,59 +25,80 @@ Counter.propTypes = {
     value: PropTypes.number.isRequired
 };
 
-class CounterContainer extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.onIncrement = this.onIncrement.bind(this);
-        this.onDecrement = this.onDecrement.bind(this);
-        this.updateCount = this.updateCount.bind(this);
-        this.getOwnState = this.getOwnState.bind(this);
 
-        this.state = this.getOwnState();
-    }
 
-    getOwnState() {
-        return {
-            value: this.context.store.getState()[this.props.caption]
-        };
-    }
-
-    componentDidMount() {
-        this.context.store.subscribe(this.updateCount);
-    }
-    componentWillUnmount() {
-        this.context.store.unsubscribe(this.updateCount);
-    }
-    onIncrement() {
-        this.context.store.dispatch(Actions.increment(this.props.caption));
-    }
-    onDecrement() {
-        this.context.store.dispatch(Actions.decrement(this.props.caption));
-    }
-    updateCount() {
-        this.setState(this.getOwnState());
-    }
-    render() {
-        const counterStyle = {
-            margin: "16px"
-        };
-        return (
-            <Counter
-                caption={this.props.caption}
-                onIncrement={this.onIncrement}
-                onDecrement={this.onDecrement}
-                value={this.state.value}
-            />
-        );
+function mapStateToProps(state,ownProps){
+    return {
+        value:state[ownProps.caption]
     }
 }
 
-CounterContainer.propTypes = {
-    caption: PropTypes.string.isRequired
-};
+function mapDispatchtoProps(dispatch, ownProps){
+    return{
+        onIncrement:()=>{
+            dispatch(Actions.increment(ownProps.caption))
+        },
+        onDecrement:()=>{
+            dispatch(Actions.decrement(ownProps.caption))
+        }
+    }
+}
 
-CounterContainer.contextTypes = {
-    store: PropTypes.object
-};
+export default connect(mapStateToProps,mapDispatchtoProps)(Counter);
 
-export default CounterContainer;
+
+// class CounterContainer extends Component {
+//     constructor(props, context) {
+//         super(props, context);
+//         this.onIncrement = this.onIncrement.bind(this);
+//         this.onDecrement = this.onDecrement.bind(this);
+//         this.updateCount = this.updateCount.bind(this);
+//         this.getOwnState = this.getOwnState.bind(this);
+
+//         this.state = this.getOwnState();
+//     }
+
+//     getOwnState() {
+//         return {
+//             value: this.context.store.getState()[this.props.caption]
+//         };
+//     }
+
+//     componentDidMount() {
+//         this.context.store.subscribe(this.updateCount);
+//     }
+//     componentWillUnmount() {
+//         this.context.store.unsubscribe(this.updateCount);
+//     }
+//     onIncrement() {
+//         this.context.store.dispatch(Actions.increment(this.props.caption));
+//     }
+//     onDecrement() {
+//         this.context.store.dispatch(Actions.decrement(this.props.caption));
+//     }
+//     updateCount() {
+//         this.setState(this.getOwnState());
+//     }
+//     render() {
+//         const counterStyle = {
+//             margin: "16px"
+//         };
+//         return (
+//             <Counter
+//                 caption={this.props.caption}
+//                 onIncrement={this.onIncrement}
+//                 onDecrement={this.onDecrement}
+//                 value={this.state.value}
+//             />
+//         );
+//     }
+// }
+
+
+// CounterContainer.propTypes = {
+//     caption: PropTypes.string.isRequired
+// };
+
+// CounterContainer.contextTypes = {
+//     store: PropTypes.object
+// };
