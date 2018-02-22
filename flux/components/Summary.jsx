@@ -5,12 +5,10 @@ import SummaryStore from '../stores/SummaryStore'
 export default class Summary extends Component{
     constructor(props){
         super(props);
-        console.log(111,this)
         this.updateSummary = this.updateSummary.bind(this);
         this.state = {
            sum:SummaryStore.getSummary()
         }
-
     }
 
     componentDidMount(){

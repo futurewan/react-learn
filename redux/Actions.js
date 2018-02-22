@@ -13,7 +13,14 @@ const decrement = (counterCaption) => {
     };
 };
 
+const double = () => {
+    return {
+        type: ActionTypes.DOUBLE
+    };
+};
+
 export {
     increment,
-    decrement
+    decrement,
+    double
 }

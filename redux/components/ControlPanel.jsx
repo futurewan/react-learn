@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Counter from "./Counter";
-// import Summary from './Summary'
+import Summary from './Summary';
+
+import * as Actions from "../Actions";
+import Store from '../Store'
 
 const style = {
     margin: "20px"
@@ -12,6 +15,7 @@ class ControlPanel extends Component {
         this.changeRender = this.changeRender.bind(this);
     }
     changeRender() {
+        Store.dispatch(Actions.double())
         // this.setState({ value: this.state.value+1 });
         // this.forceUpdate();
     }
@@ -21,8 +25,9 @@ class ControlPanel extends Component {
                 <Counter caption="First" />
                 <Counter caption="Second" />
                 <Counter caption="Third" />
+                <Summary />
                 <button onClick={this.changeRender}>
-                    Click me to re-render!
+                    Click me to double!
                 </button>
             </div>
         );

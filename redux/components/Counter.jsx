@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import * as Actions from "../Actions";
 import {connect} from 'react-redux';
+
+import * as Actions from "../Actions";
 
 const counterStyle = {
     margin: "16px"
