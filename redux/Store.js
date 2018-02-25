@@ -1,7 +1,6 @@
 import {createStore} from 'redux';
 import reducer from './Reducer'
 
-
 const counterValues={
     'First':0,
     'Second':10,
