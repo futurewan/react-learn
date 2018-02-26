@@ -3,6 +3,7 @@ import React from "react";
 import AddTodo from "./addTodo";
 import TodoList from "./todoList";
 
+// import {initTodos} from '../../constants'
 export default () => {
     return (
         <div className="real-app">

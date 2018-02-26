@@ -1,4 +1,4 @@
-import {ADD_TODO,TOGGLE_TODO,REMOVE_TODO} from './actionType';
+import {ADD_TODO,TOGGLE_TODO,REMOVE_TODO} from './actionTypes';
 
 export default (previousState = [],action)=>{
     switch(action.type){
