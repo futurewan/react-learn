@@ -2,6 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import classNames from 'classnames';
 
+import {connect} from 'react-redux';
+
 class TodoItem extends React.Component{
     render(){
         const {completed,content,deleteTodo,toggleTodo} = this.props;
@@ -24,4 +26,7 @@ TodoItem.propTypes = {
     deleteTodo:propTypes.func.isRequired,
     toggleTodo:propTypes.func.isRequired
 }
-export default TodoItem;
+
+
+
+export default  TodoItem;

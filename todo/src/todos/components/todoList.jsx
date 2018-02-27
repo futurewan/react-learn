@@ -4,11 +4,11 @@ import propTypes from "prop-types";
 
 import TodoItem from "./todoItem";
 import { FilterTypes } from "../../constants";
+import * as actions from '../actions';
 
 class TodoList extends React.Component {
     render() {
         const { todos, deleteTodo, toggleTodo } = this.props;
-        // console.log(this.props)
         return (
             <div>
                 {todos.map(item => (
@@ -49,8 +49,12 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        deleteTodo: id => {},
-        toggleTodo: id => {}
+        deleteTodo: id => {
+            dispatch(actions.delTodo(id))
+        },
+        toggleTodo: id => {
+            dispatch(actions.toggleTodo(id))
+        }
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

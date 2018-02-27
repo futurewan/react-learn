@@ -6,7 +6,7 @@ import TodoList from "./todoList";
 // import {initTodos} from '../../constants'
 export default () => {
     return (
-        <div className="real-app">
+        <div>
             <div className="cover"></div>
             <div className="header">
                 <h1>WTodo</h1>
