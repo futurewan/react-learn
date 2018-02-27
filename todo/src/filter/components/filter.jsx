@@ -4,24 +4,24 @@ import '../filter.less';
 import classNames from 'classnames';
 
 import {FilterTypes} from '../../constants.js';
-
+import { setFilter } from '../actions';
+import { clearCompletedTodo } from '../../todos/actions';
 
 class Filter extends React.Component{
     render(){
-        const {toggleFilter} = this.props;
-        // const spanCls = classNames({
-        //     'actived':filter === state
-        // })
+        const {filter,toggleFilter,clearCompleted,unCompletedL} = this.props;
         return(
             <div className="helper">
-                <span className="left"> item left</span>
+                <span className="left"> {unCompletedL}item left</span>
                 <span className="tabs">
                     {
                         Object.entries(FilterTypes).map((state)=>{
                             return (
                                 <span 
-                                    key={state[0]} 
-                                    // className={spanCls}
+                                    key={state[0]}
+                                    className={classNames({
+                                            'actived':filter === state[1]
+                                        })}
                                     onClick={()=>toggleFilter(state[1])}
                                 >
                                     {state[1]}
@@ -30,16 +30,28 @@ class Filter extends React.Component{
                         })
                     }
                 </span>
-                <span className="clear">clear completed</span>
+                <span className="clear" onClick={clearCompleted}>clear completed</span>
             </div>
         )
     }
 }
-const mapDispatchtoProps = (dispatch)=>{
+const mapStateToProps = state=>{
+
+    console.log(state)
+    return {
+        filter:state.filter,
+        unCompletedL:state.todos.filter((todo)=>!todo.completed).length
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
     return{
-        toggleFilter:(filter)=>{
-            dispatch()
+        toggleFilter:(filterType)=>{
+            dispatch(setFilter(filterType))
+        },
+        clearCompleted:()=>{
+            dispatch(clearCompletedTodo())
+            console.log('clear')
         }
     }
 }
-export default connect(null,mapDispatchtoProps)(Filter)
+export default connect(mapStateToProps,mapDispatchToProps)(Filter)

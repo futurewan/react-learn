@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from "./actionTypes";
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO,CLEARCOMPLETED_TODO } from "./actionTypes";
 
 export default (previousState = [], action) => {
     switch (action.type) {
@@ -28,6 +28,11 @@ export default (previousState = [], action) => {
                     return item;
                 }
             });
+        case CLEARCOMPLETED_TODO:{
+            return previousState.filter(item => {
+                return !item.completed;
+            });
+        }
         default:
             return previousState;
     }

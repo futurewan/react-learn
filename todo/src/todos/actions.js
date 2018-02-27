@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from "./actionTypes";
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO,CLEARCOMPLETED_TODO } from "./actionTypes";
 import { initTodos } from "../constants";
 
 let nextTodoId = initTodos.length;
@@ -17,3 +17,8 @@ export const toggleTodo = id => ({
     type: TOGGLE_TODO,
     id: id
 });
+
+
+export const clearCompletedTodo = filterType=>({
+    type: CLEARCOMPLETED_TODO
+})
